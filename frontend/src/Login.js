@@ -1,0 +1,27 @@
+import React, { useState } from 'react';
+import { apiRequest } from './api';
+
+export default function Login({ onLogin }) {
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError('');
+    try {
+      const data = await apiRequest('/auth/login', 'POST', form);
+      onLogin(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+  return (
+    <form onSubmit={handleSubmit} className="container">
+      <h2>Login</h2>
+      <input name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+      <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+      <button type="submit">Login</button>
+      {error && <div className="error">{error}</div>}
+    </form>
+  );
+}
