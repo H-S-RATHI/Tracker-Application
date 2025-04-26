@@ -53,12 +53,16 @@ router.put('/:taskId', auth, async (req, res) => {
 router.delete('/:taskId', auth, async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);
+    console.log('DELETE /api/tasks/:taskId - task:', task);
     if (!task) return res.status(404).json({ message: 'Task not found.' });
+    console.log('task.project:', task.project);
     const project = await Project.findOne({ _id: task.project, user: req.user.id });
+    console.log('project:', project);
     if (!project) return res.status(403).json({ message: 'Forbidden.' });
-    await task.remove();
+    await Task.deleteOne({ _id: task._id });
     res.json({ message: 'Task deleted.' });
   } catch (err) {
+    console.error('Error deleting task:', err);
     res.status(500).json({ message: 'Server error.' });
   }
 });

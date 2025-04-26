@@ -16,12 +16,16 @@ export default function Login({ onLogin }) {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="container">
+    <form onSubmit={handleSubmit} className="login-container">
       <h2>Login</h2>
       <input name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
       <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
       <button type="submit">Login</button>
       {error && <div className="error">{error}</div>}
+      <div style={{ textAlign: 'center', marginTop: 12 }}>
+        <span>Don't have an account? </span>
+        <a href="/signup" style={{ color: '#6366f1', textDecoration: 'underline', cursor: 'pointer' }}>Sign up</a>
+      </div>
     </form>
   );
 }

@@ -16,7 +16,7 @@ export default function Signup({ onSignup, onGoToLogin }) {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="container">
+    <form onSubmit={handleSubmit} className="signup-container">
       <h2>Sign Up</h2>
       <input name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
       <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
