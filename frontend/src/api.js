@@ -1,5 +1,5 @@
 // Centralized API utility for Task Tracker frontend
-const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5000/api';
+const API_BASE = process.env.REACT_APP_API_BASE || 'https://tracker-application.onrender.com/api';
 
 export async function apiRequest(endpoint, method = 'GET', body = null, token = null) {
   const headers = { 'Content-Type': 'application/json' };
