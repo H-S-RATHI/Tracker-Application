@@ -896,6 +896,65 @@ body {
   font-weight: 500;
 }
 
+.pd-task-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  background: #f8fafc;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.06);
+  padding: 18px 22px 14px 22px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.pd-task-form label {
+  font-weight: 600;
+  color: #3730a3;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.pd-task-form input,
+.pd-task-form select {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  margin-bottom: 0;
+  transition: border 0.2s, box-shadow 0.2s;
+  min-width: 160px;
+}
+
+.pd-task-form input:focus,
+.pd-task-form select:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.10);
+}
+
+.pd-task-form button[type="submit"] {
+  background: linear-gradient(100deg, #6366f1 0%, #818cf8 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 24px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  margin-left: 8px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pd-task-form button[type="submit"]:hover {
+  background: linear-gradient(100deg, #4f46e5 0%, #6366f1 100%);
+}
+
 @media (max-width: 600px) {
   .project-detail-header {
     flex-wrap: wrap;
@@ -929,4 +988,87 @@ body {
   overflow-x: auto;
   transition: box-shadow 0.2s, border 0.2s;
 }
+
+.pd-task-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.pd-task-table th {
+  background: #f1f5f9;
+  color: #3730a3;
+  font-weight: 700;
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 2px solid #e0e7ff;
+}
+
+.pd-task-table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.pd-task-table tr:hover {
+  background: #f5f3ff;
+  transition: background 0.2s;
+}
+
+.pd-status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.97em;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.pd-status-pending {
+  background: #fef9c3;
+  color: #b45309;
+}
+.pd-status-in-progress {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.pd-status-completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pd-action-btn {
+  background: #f1f5f9;
+  border: none;
+  color: #6366f1;
+  padding: 7px 12px;
+  border-radius: 7px;
+  margin-right: 4px;
+  font-size: 0.96em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+.pd-action-btn:hover {
+  background: #6366f1;
+  color: #fff;
+}
+.pd-delete-btn {
+  color: #dc2626;
+}
+.pd-delete-btn:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.pd-toggle-btn {
+  color: #10b981;
+}
+.pd-toggle-btn:hover {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+
 
