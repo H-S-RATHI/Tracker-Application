@@ -44,4 +44,25 @@ router.get('/:id/tasks', auth, async (req, res) => {
   }
 });
 
+// Delete a project and its tasks
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    console.log('[DELETE /api/projects/:id] Requested ID:', req.params.id, 'User ID:', req.user.id);
+    const project = await Project.findOne({ _id: req.params.id, user: req.user.id });
+    if (!project) {
+      console.warn('[DELETE /api/projects/:id] Project not found for user:', req.user.id, 'Project ID:', req.params.id);
+      return res.status(404).json({ message: 'Project not found for this user.' });
+    }
+    // Delete all tasks associated with this project
+    await Task.deleteMany({ project: project._id });
+    // Delete the project
+    await Project.deleteOne({ _id: project._id });
+    console.log('[DELETE /api/projects/:id] Project and tasks deleted for Project ID:', req.params.id);
+    res.json({ message: 'Project deleted.' });
+  } catch (err) {
+    console.error('[DELETE /api/projects/:id] Error:', err);
+    res.status(500).json({ message: 'Server error.' });
+  }
+});
+
 module.exports = router;

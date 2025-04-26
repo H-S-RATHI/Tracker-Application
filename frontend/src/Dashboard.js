@@ -165,26 +165,45 @@ export default function Dashboard({ token, user, onLogout, onSelectProject }) {
           ) : (
             <ul className="project-grid">
               {projects.map((p, index) => (
-                <li key={p._id} className="project-card">
-                  <button 
-                    onClick={() => onSelectProject(p)} 
-                    className="project-card-content"
-                  >
-                    <div className="project-card-header">
-                      <span className="project-icon">
-                        {projectIcons[index % projectIcons.length]}
-                      </span>
-                      <div className="project-status">Active</div>
-                    </div>
-                    <h4 className="project-name">{p.name}</h4>
-                    <div className="project-meta">
-                      <div className="tasks-count">0 tasks</div>
-                      <div className="last-updated">Updated today</div>
-                    </div>
-                    <div className="view-project">View Details →</div>
-                  </button>
-                </li>
-              ))}
+  <li key={p._id} className="project-card">
+    <div className="project-card-content-wrapper">
+      <button 
+        onClick={() => onSelectProject(p)} 
+        className="project-card-content"
+      >
+        <div className="project-card-header">
+          <span className="project-icon">
+            {projectIcons[index % projectIcons.length]}
+          </span>
+          <div className="project-status">Active</div>
+        </div>
+        <h4 className="project-name">{p.name}</h4>
+        <div className="project-meta">
+          <div className="tasks-count">0 tasks</div>
+          <div className="last-updated">Updated today</div>
+        </div>
+        <div className="view-project">View Details →</div>
+      </button>
+      <button 
+        className="delete-project-btn"
+        title="Delete Project"
+        onClick={async (e) => {
+          e.stopPropagation();
+          if (window.confirm('Are you sure you want to delete this project and all its tasks?')) {
+            try {
+              await apiRequest(`/projects/${p._id}`, 'DELETE', null, token);
+              fetchProjects();
+            } catch (err) {
+              setError(err.message);
+            }
+          }
+        }}
+      >
+        <span role="img" aria-label="delete">🗑️</span>
+      </button>
+    </div>
+  </li>
+))}
             </ul>
           )}
         </section>
