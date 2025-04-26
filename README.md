@@ -105,5 +105,5 @@ MIT
 ---
 
 ## Credits
-- Developed by [Your Name/Team].
+- Developed by H.S Rathi.
 - UI inspired by modern SaaS dashboard patterns.
